@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_dashboard" name="shell-type" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap"
+    rel="stylesheet" />
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main>:first-child {
+        margin-top: 0 !important;
+      }
+
+      main>:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#fd8a42", "surface-variant": "#d3e4fe", "inverse-on-surface": "#eaf1ff", "surface-container": "#e5eeff", "surface-bright": "#f8f9ff", "outline": "#76777d", "tertiary-container": "#00174b", "primary-fixed-dim": "#bec6e0", "inverse-surface": "#213145", "on-error-container": "#93000a", "primary-fixed": "#dae2fd", "on-background": "#0b1c30", "surface-container-lowest": "#ffffff", "surface-tint": "#565e74", "outline-variant": "#c6c6cd", "on-primary-container": "#7c839b", "inverse-primary": "#bec6e0", "background": "#f8f9ff", "on-primary": "#ffffff", "on-tertiary-fixed": "#00174b", "secondary-fixed": "#ffdbca", "on-error": "#ffffff", "on-surface": "#0b1c30", "surface": "#f8f9ff", "on-tertiary": "#ffffff", "on-secondary-container": "#682c00", "on-primary-fixed-variant": "#3f465c", "surface-container-high": "#dce9ff", "tertiary-fixed": "#dbe1ff", "on-tertiary-container": "#497cff", "on-secondary-fixed-variant": "#763300", "on-primary-fixed": "#131b2e", "on-surface-variant": "#45464d", "primary": "#000000", "surface-container-low": "#eff4ff", "surface-container-highest": "#d3e4fe", "error-container": "#ffdad6", "primary-container": "#131b2e", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#003ea8", "surface-dim": "#cbdbf5", "secondary": "#9b4500", "tertiary": "#000000", "on-secondary-fixed": "#331200", "tertiary-fixed-dim": "#b4c5ff", "on-secondary": "#ffffff", "secondary-fixed-dim": "#ffb68e" }, borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" }, spacing: { "gutter": "0.75rem", "gutter-desktop": "1rem", "margin-desktop": "1.5rem", "space-lg": "1rem", "space-xs": "0.25rem", "margin": "1rem", "space-sm": "0.5rem", "space-md": "0.75rem", "space-xl": "1.5rem" }, fontFamily: { "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "metric-display": ["Inter"], "body-lg": ["Inter"], "title-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "code-sm": ["Inter"], "label-md": ["Inter"], "body-md": ["Inter"] }, fontSize: { "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }], "headline-lg-mobile": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "metric-display": ["28px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "title-sm": ["15px", { lineHeight: "20px", letterSpacing: "0", fontWeight: "600" }], "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }], "code-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-md": ["13px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }] } } } };</script>
+</head>
+
+<body class="bg-background font-body-md text-on-surface antialiased">
+  <header
+    class="fixed top-0 left-0 right-0 h-16 bg-primary-container z-50 px-margin-desktop flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.18)]">
+    <div class="flex items-center gap-space-lg">
+      <div class="flex items-center gap-space-sm"><img alt="CartoPlan Logo" class="h-8 w-auto object-contain"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjEQ1KYH00-dXF0gFg6JIri3NPHxrH2R21gYCbssFL7RmUYcYxxrM-yznig2MRV3wcqxfdIRKc_S_05wY5s7eE0sor38NkTFqGoiAGTGAbzAQeK06EDC0_Mepv1PX0C-nJn-fBitNmfuba1nf9ytEcDXHfm6vcORBbPI2JLfMIUWFC9MFsCGhgTqKDwDwu-f-_bT6_3LomTcQZ5AsXTN08qVV66-oAjZfPFW-yah-tlrugVMp3Mj1JNQ" />
+        <div class="flex flex-col"><span
+            class="font-title-sm text-title-sm text-surface-container-lowest font-bold tracking-tight leading-none">CartoPlan</span><span
+            class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider">Manufacturing
+            Cockpit</span></div>
+      </div>
+      <div class="h-6 w-px bg-outline-variant/30 hidden md:block"></div>
+      <div
+        class="hidden md:flex items-center gap-space-xs bg-surface-container-lowest/10 px-space-sm py-1 rounded border border-outline-variant/20">
+        <span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">factory</span><select
+          class="bg-transparent text-surface-container-lowest font-label-md text-label-md focus:outline-none cursor-pointer pr-space-xs">
+          <option class="bg-primary-container text-surface-container-lowest" value="mty">Planta Central - Monterrey
+          </option>
+          <option class="bg-primary-container text-surface-container-lowest" value="tlc">Planta Lerma - Toluca</option>
+        </select></div>
+      <div
+        class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container-lowest/10 rounded border border-outline-variant/20">
+        <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span
+          class="font-label-sm text-label-sm text-surface-container-lowest font-semibold">Turno 1 - En Curso (06:00 -
+          14:30)</span></div>
+    </div>
+    <div class="flex items-center gap-space-md">
+      <div class="hidden xl:flex items-center gap-space-xs text-primary-fixed-dim"><span
+          class="material-symbols-outlined text-[16px] text-secondary-container">sync</span><span
+          class="font-code-sm text-code-sm">PLC Sync: 12ms</span></div>
+      <div
+        class="hidden md:flex items-center gap-space-xs bg-surface-container-lowest/10 px-space-sm py-1 rounded border border-outline-variant/20 text-surface-container-lowest">
+        <span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">calendar_today</span><span
+          class="font-label-sm text-label-sm">Hoy • Turno Activo</span></div><button
+        class="relative p-space-xs text-surface-container-lowest hover:text-secondary-fixed transition-colors"
+        title="Alertas de Mantenimiento y Cuellos de Botella"><span
+          class="material-symbols-outlined text-[20px]">notifications_active</span><span
+          class="absolute top-0 right-0 w-2 h-2 rounded-full bg-secondary-container"></span></button>
+      <div class="h-6 w-px bg-outline-variant/30"></div>
+      <div class="flex items-center gap-space-sm pl-space-xs">
+        <div class="text-right hidden sm:block">
+          <div class="font-label-md text-label-md text-surface-container-lowest leading-none font-semibold">Ing. Roberto
+            Garza</div>
+          <div class="font-label-sm text-label-sm text-primary-fixed-dim leading-none mt-1">Sup. Corrugadora &
+            Conversión</div>
+        </div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-secondary-container/40"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDD_HzwhwYm9m1ZvDigBkOT4tQSfBJdwVBC-1A7bseeAdcQ1INnKm58iUKiCMal7nK5IDVMa0abuRpv8SLeigwtxLDFHEAKkyrRFNHI6jEgyQ2QgHwVkEVaNosCJihdQmfv4BNw40igf-5rwI4UnCJtd8zNFLfOa3OONHoOkF--1U4gxmUNuJuUIIax97EgpfQeeSwgemewyR5ByR1RQw2Tpn72Pfd0DHC-sLB07TtkrrJpk5AGyQhEg" />
+      </div>
+    </div>
+  </header>
+  <aside
+    class="fixed left-0 top-16 bottom-0 w-72 bg-surface-container-lowest z-40 flex flex-col border-r border-outline-variant/30">
+    <div class="p-space-md border-b border-outline-variant/20 bg-surface-container-low/40">
+      <div class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Terminal de
+        Línea</div>
+      <div class="font-code-sm text-code-sm text-on-surface font-semibold flex items-center justify-between mt-1">
+        <span>CORRUGADORA BHS 2.50M</span><span
+          class="px-1.5 py-0.5 rounded bg-surface-container text-on-primary-fixed font-bold text-[10px]">ACTIVA</span>
+      </div>
+    </div>
+    <nav class="flex-1 p-space-sm space-y-1 overflow-y-auto"
+      data-active-classes="bg-primary text-on-primary font-semibold shadow-sm">
+      <div
+        class="px-space-sm py-1 font-label-sm text-label-sm text-on-surface-variant/80 uppercase tracking-widest font-bold">
+        Operaciones & Planta</div><a
+        class="flex items-center gap-space-sm px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+        data-path="programacion-y-capacidad-de-maquinas" href="#"><span
+          class="material-symbols-outlined text-[20px]">calendar_view_week</span><span
+          class="font-body-md text-body-md">Prog. y Capacidad</span></a><a
+        class="flex items-center gap-space-sm px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+        data-path="ordenes-de-produccion" href="#"><span
+          class="material-symbols-outlined text-[20px]">assignment</span><span class="font-body-md text-body-md">Órdenes
+          de Producción</span></a><a
+        class="flex items-center gap-space-sm px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+        data-path="simulador-de-estimaciones-y-entregas" href="#"><span
+          class="material-symbols-outlined text-[20px]">timeline</span><span class="font-body-md text-body-md">Simulador
+          de Entregas</span></a><a
+        class="flex items-center gap-space-sm px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+        data-path="control-de-inventario-bobinas-y-laminas" href="#"><span
+          class="material-symbols-outlined text-[20px]">inventory_2</span><span
+          class="font-body-md text-body-md">Inventario Bobinas / Láminas</span></a><a
+        class="flex items-center gap-space-sm px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+        data-path="metricas-oee" href="#"><span class="material-symbols-outlined text-[20px]">speed</span><span
+          class="font-body-md text-body-md">Métricas OEE & Desperdicio</span></a>
+      <div
+        class="pt-space-md px-space-sm py-1 font-label-sm text-label-sm text-on-surface-variant/80 uppercase tracking-widest font-bold">
+        Configuración Técnica</div><a
+        class="flex items-center gap-space-sm px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+        data-path="secuencia-cuchillas-slitter" href="#"><span
+          class="material-symbols-outlined text-[20px]">tune</span><span class="font-body-md text-body-md">Slitter &
+          Cabezales de Corte</span></a><a
+        class="flex items-center gap-space-sm px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+        data-path="alertas-mantenimiento" href="#"><span
+          class="material-symbols-outlined text-[20px]">build_circle</span><span
+          class="font-body-md text-body-md">Alertas de Mantenimiento</span></a>
+    </nav>
+    <div class="p-space-md border-t border-outline-variant/30 bg-surface-container-low/30">
+      <div class="flex items-center justify-between text-on-surface-variant mb-1"><span
+          class="font-label-sm text-label-sm">Velocidad Corrugador</span><span
+          class="font-code-sm text-code-sm font-bold text-on-surface">265 m/min</span></div>
+      <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+        <div class="bg-secondary-container h-full w-[88%]"></div>
+      </div>
+      <div class="flex items-center justify-between text-[10px] text-on-surface-variant mt-1.5"><span>Consumo Kraft:
+          42.8 T</span><span>Flauta: B/C Doble</span></div>
+    </div>
+  </aside>
+  <div class="pl-72">
+    <main class="relative pt-16 bg-surface min-h-screen">
+      <div class="flex flex-col w-full">
+        <!-- Dynamic Operational Toast Notifications -->
+        <div
+          class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-space-lg py-space-md rounded-lg shadow-xl border-l-4 border-secondary-container flex items-center gap-space-md transition-all duration-300"
+          id="statusToast">
+          <span class="material-symbols-outlined text-secondary-container text-[22px]">check_circle</span>
+          <div>
+            <p class="font-title-sm text-title-sm leading-tight text-white font-bold" id="toastTitle">Orden Programada
+              con Éxito</p>
+            <p class="font-body-sm text-body-sm text-surface-container-high" id="toastMessage">Asignada a cola con hito
+              logístico calculado.</p>
+          </div>
+        </div>
+        <div class="p-margin-desktop space-y-space-xl">
+          <!-- 1. Encabezado y Barra de Métricas Globales de Planta -->
+          <section class="flex flex-col gap-space-lg">
+            <div
+              class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+              <div class="flex flex-col">
+                <div class="flex items-center gap-space-sm mb-1">
+                  <span
+                    class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold">PLANTA
+                    CENTRAL MTY</span>
+                  <span class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span> Sistema en Tiempo
+                    Real (Sync PLC)
+                  </span>
+                </div>
+                <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-bold">
+                  Tablero de Control de Planta y Capacidad de Líneas
+                </h1>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Monitoreo en vivo de corrida, cuello de botella de flexos y simulación de fechas de compromiso (Lead
+                  Time).
+                </p>
+              </div>
+              <!-- Controls: Plant, Shift, Actions -->
+              <div class="flex flex-wrap items-center gap-space-sm">
+                <div class="flex items-center bg-surface-container-low px-space-sm py-1.5 rounded-lg border-0">
+                  <span class="material-symbols-outlined text-[18px] text-on-surface-variant mr-1.5">schedule</span>
+                  <label class="sr-only" for="shiftSelector">Seleccionar Turno</label>
+                  <select
+                    class="bg-transparent font-label-md text-label-md text-on-surface font-semibold focus:outline-none cursor-pointer"
+                    id="shiftSelector">
+                    <option value="1">Turno 1 • 06:00 - 14:30 (Activo)</option>
+                    <option value="2">Turno 2 • 14:30 - 22:30 (Programado)</option>
+                    <option value="3">Turno 3 • 22:30 - 06:00 (Mantenimiento / Nocturno)</option>
+                  </select>
+                </div>
+                <button
+                  class="flex items-center gap-space-xs bg-secondary hover:bg-secondary/90 text-on-secondary px-space-md py-2 rounded-lg font-title-sm text-title-sm shadow-sm transition-all duration-150"
+                  onclick="scrollToEstimator()">
+                  <span class="material-symbols-outlined text-[18px]">post_add</span>
+                  <span>+ Nueva Estimación de Orden</span>
+                </button>
+                <button
+                  class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-2 rounded-lg font-title-sm text-title-sm shadow-sm transition-all duration-150"
+                  onclick="triggerOptimization()">
+                  <span class="material-symbols-outlined text-[18px] text-secondary-container">tune</span>
+                  <span>Optimizar Secuencia</span>
+                </button>
+              </div>
+            </div>
+            <!-- 4 Tarjetas KPI operativas de alto impacto -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+              <!-- KPI 1 -->
+              <div
+                class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Total
+                      Programado Hoy</span>
+                    <div class="font-metric-display text-metric-display text-on-surface font-bold mt-1 tracking-tight">
+                      512,000 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">uds</span>
+                    </div>
+                  </div>
+                  <div class="p-2 bg-surface-container rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">layers</span>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2 flex items-center justify-between font-code-sm text-code-sm">
+                  <span class="text-on-surface-variant font-medium">Volumen Total M²:</span>
+                  <span class="font-bold text-on-surface">394,200 m²</span>
+                </div>
+              </div>
+              <!-- KPI 2 -->
+              <div
+                class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Pendiente
+                      por Producir</span>
+                    <div class="font-metric-display text-metric-display text-secondary font-bold mt-1 tracking-tight">
+                      198,400 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">uds</span>
+                    </div>
+                  </div>
+                  <div class="p-2 bg-secondary-fixed text-secondary">
+                    <span class="material-symbols-outlined text-[24px]">hourglass_top</span>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2 flex items-center justify-between font-code-sm text-code-sm">
+                  <span class="text-on-surface-variant font-medium">Carga Restante Turno:</span>
+                  <span class="font-bold text-secondary">38.7% del programa</span>
+                </div>
+              </div>
+              <!-- KPI 3 -->
+              <div
+                class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Capacidad
+                      en Uso</span>
+                    <div class="font-metric-display text-metric-display text-on-surface font-bold mt-1 tracking-tight">
+                      87.4% <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">prom.</span>
+                    </div>
+                  </div>
+                  <div class="p-2 bg-surface-container-high text-on-surface">
+                    <span class="material-symbols-outlined text-[24px]">speed</span>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2 flex items-center justify-between font-code-sm text-code-sm">
+                  <span class="text-on-surface-variant font-medium">Margen disponible:</span>
+                  <span class="font-bold text-on-surface">12.6% (68,000 uds)</span>
+                </div>
+              </div>
+              <!-- KPI 4 -->
+              <div
+                class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Lead
+                      Time de Cola Promedio</span>
+                    <div class="font-metric-display text-metric-display text-on-surface font-bold mt-1 tracking-tight">
+                      1.8 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">días</span></div>
+                  </div>
+                  <div class="p-2 bg-surface-container rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-[24px]">timelapse</span>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2 flex items-center justify-between font-code-sm text-code-sm">
+                  <span class="text-on-surface-variant font-medium">Para Nuevos Pedidos:</span>
+                  <span class="font-bold text-on-surface">Compromiso 44 hrs</span>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 2. Panel de Máquinas y Monitoreo de Capacidad Diaria -->
+          <section class="space-y-space-md">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Líneas de Producción y Carga de
+                  Trabajo</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Velocidades nominales, colas de trabajo
+                  activas y disponibilidad calculada por máquina.</p>
+              </div>
+              <div
+                class="flex items-center gap-space-xs font-code-sm text-code-sm bg-surface-container-lowest px-space-md py-1 rounded-lg shadow-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> 3 Operando
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 ml-2"></span> 1 Saturada
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+              <!-- Máquina 1: Corrugadora BHS 2.80m -->
+              <div
+                class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-low">
+                    <span
+                      class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">Línea
+                      Primaria 01</span>
+                    <span
+                      class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-emerald-50 text-emerald-800 font-semibold flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> 260 m/min
+                    </span>
+                  </div>
+                  <div class="mt-space-sm">
+                    <h3 class="font-title-sm text-title-sm font-bold text-on-surface">Corrugadora BHS 2.80m</h3>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Láminas & Cartón Simple/Doble Onda</p>
+                  </div>
+                  <!-- Capacidad y Datos -->
+                  <div class="mt-space-md space-y-space-xs font-body-sm text-body-sm">
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Capacidad diaria:</span>
+                      <span class="font-semibold text-on-surface">240,000 láminas</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Equivalente m²:</span>
+                      <span class="font-code-sm text-code-sm font-medium text-on-surface-variant">180,000 m²/día</span>
+                    </div>
+                    <div class="flex justify-between pt-1">
+                      <span class="text-on-surface-variant">Programado:</span>
+                      <span class="font-bold text-on-surface">220,000</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Producido:</span>
+                      <span class="font-bold text-emerald-700">155,000 (70.5%)</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Pendiente:</span>
+                      <span class="font-bold text-secondary">65,000 láminas</span>
+                    </div>
+                  </div>
+                  <!-- Progreso Visual -->
+                  <div class="mt-space-md">
+                    <div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+                      <span>Avance del Turno</span>
+                      <span class="font-semibold text-on-surface">70.5% completado</span>
+                    </div>
+                    <div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden flex">
+                      <div class="bg-emerald-600 h-full" style="width: 70.5%"></div>
+                      <div class="bg-secondary-container h-full" style="width: 29.5%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-lg pt-space-sm border-t border-surface-container-low bg-surface-container-low/40 -mx-space-md -mb-space-md p-space-md rounded-b-xl flex items-center justify-between">
+                  <div>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Cola Restante:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-on-surface">6.5 hrs de corrida</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Fin de Cola:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-on-surface">Hoy 22:30 hrs</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Máquina 2: Hojeadora Pasaban Synchro -->
+              <div
+                class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-low">
+                    <span
+                      class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">Corte
+                      Fino 02</span>
+                    <span
+                      class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-emerald-50 text-emerald-800 font-semibold flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Kraft Liner 250g
+                    </span>
+                  </div>
+                  <div class="mt-space-sm">
+                    <h3 class="font-title-sm text-title-sm font-bold text-on-surface">Hojeadora Pasaban Synchro</h3>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Hojas de cartón cortadas a medida</p>
+                  </div>
+                  <div class="mt-space-md space-y-space-xs font-body-sm text-body-sm">
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Capacidad diaria:</span>
+                      <span class="font-semibold text-on-surface">130,000 hojas</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Gramaje activo:</span>
+                      <span class="font-code-sm text-code-sm font-medium text-on-surface-variant">175g - 350g
+                        Calibre</span>
+                    </div>
+                    <div class="flex justify-between pt-1">
+                      <span class="text-on-surface-variant">Programado:</span>
+                      <span class="font-bold text-on-surface">125,000</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Producido:</span>
+                      <span class="font-bold text-emerald-700">98,000 (78.4%)</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Pendiente:</span>
+                      <span class="font-bold text-secondary">27,000 hojas</span>
+                    </div>
+                  </div>
+                  <div class="mt-space-md">
+                    <div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+                      <span>Avance del Turno</span>
+                      <span class="font-semibold text-on-surface">78.4% completado</span>
+                    </div>
+                    <div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden flex">
+                      <div class="bg-emerald-600 h-full" style="width: 78.4%"></div>
+                      <div class="bg-secondary-container h-full" style="width: 21.6%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-lg pt-space-sm border-t border-surface-container-low bg-surface-container-low/40 -mx-space-md -mb-space-md p-space-md rounded-b-xl flex items-center justify-between">
+                  <div>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Cola Restante:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-on-surface">4.8 hrs de corrida</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Fin de Cola:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-on-surface">Hoy 19:45 hrs</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Máquina 3: Flexo-Encoladora FFG Martin 924 (Cuello de Botella) -->
+              <div
+                class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-2 h-full bg-secondary"></div>
+                <div>
+                  <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-low">
+                    <span
+                      class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">Conversión
+                      01</span>
+                    <span
+                      class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-amber-100 text-amber-900 font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[14px] text-secondary">warning</span> Cuello de
+                      Botella
+                    </span>
+                  </div>
+                  <div class="mt-space-sm">
+                    <h3 class="font-title-sm text-title-sm font-bold text-on-surface">Flexo FFG Martin 924</h3>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Cajas RSC con Impresión 3 Tintas</p>
+                  </div>
+                  <div class="mt-space-md space-y-space-xs font-body-sm text-body-sm">
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Capacidad diaria:</span>
+                      <span class="font-semibold text-on-surface">90,000 cajas</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Carga asignada:</span>
+                      <span class="font-code-sm text-code-sm font-bold text-secondary">102,000 (113% Sobrecupo)</span>
+                    </div>
+                    <div class="flex justify-between pt-1">
+                      <span class="text-on-surface-variant">Programado:</span>
+                      <span class="font-bold text-on-surface">102,000</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Producido:</span>
+                      <span class="font-bold text-emerald-700">42,000 (41.2%)</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Pendiente:</span>
+                      <span class="font-bold text-secondary">60,000 cajas</span>
+                    </div>
+                  </div>
+                  <div class="mt-space-md">
+                    <div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+                      <span>Avance del Turno</span>
+                      <span class="font-semibold text-secondary">41.2% (Cola Desfasada)</span>
+                    </div>
+                    <div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden flex">
+                      <div class="bg-amber-500 h-full" style="width: 41.2%"></div>
+                      <div class="bg-secondary-container h-full" style="width: 58.8%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-lg pt-space-sm border-t border-surface-container-low bg-surface-container-low/40 -mx-space-md -mb-space-md p-space-md rounded-b-xl flex items-center justify-between">
+                  <div>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Cola Restante:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-secondary">16.0 hrs (Requiere T2/T3)</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Disponibilidad:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-on-surface">Mañana 08:00 hrs</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Máquina 4: Troqueladora Plana Bobst Mastercut -->
+              <div
+                class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <div class="flex items-center justify-between pb-space-xs border-b border-surface-container-low">
+                    <span
+                      class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant tracking-wider">Troquelado
+                      Especial 03</span>
+                    <span
+                      class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-emerald-50 text-emerald-800 font-semibold flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Matriz Preparada
+                    </span>
+                  </div>
+                  <div class="mt-space-sm">
+                    <h3 class="font-title-sm text-title-sm font-bold text-on-surface">Troqueladora Bobst Mastercut</h3>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Cajas autoarmables y agrícolas</p>
+                  </div>
+                  <div class="mt-space-md space-y-space-xs font-body-sm text-body-sm">
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Capacidad diaria:</span>
+                      <span class="font-semibold text-on-surface">75,000 cajas</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Golpes / hora:</span>
+                      <span class="font-code-sm text-code-sm font-medium text-on-surface-variant">6,200 ciclos/h</span>
+                    </div>
+                    <div class="flex justify-between pt-1">
+                      <span class="text-on-surface-variant">Programado:</span>
+                      <span class="font-bold text-on-surface">65,000</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Producido:</span>
+                      <span class="font-bold text-emerald-700">51,000 (78.5%)</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-on-surface-variant">Pendiente:</span>
+                      <span class="font-bold text-secondary">14,000 cajas</span>
+                    </div>
+                  </div>
+                  <div class="mt-space-md">
+                    <div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+                      <span>Avance del Turno</span>
+                      <span class="font-semibold text-on-surface">78.5% completado</span>
+                    </div>
+                    <div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden flex">
+                      <div class="bg-emerald-600 h-full" style="width: 78.5%"></div>
+                      <div class="bg-secondary-container h-full" style="width: 21.5%"></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="mt-space-lg pt-space-sm border-t border-surface-container-low bg-surface-container-low/40 -mx-space-md -mb-space-md p-space-md rounded-b-xl flex items-center justify-between">
+                  <div>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Cola Restante:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-on-surface">3.5 hrs de corrida</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant block">Disponibilidad:</span>
+                    <span class="font-code-sm text-code-sm font-bold text-on-surface">Hoy 18:30 hrs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 3. Módulo de Estimador Inteligente de Fechas para Nuevas Unidades -->
+          <section
+            class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg border-l-4 border-secondary"
+            id="estimatorSection">
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm border-b border-surface-container-low">
+              <div class="flex items-center gap-space-sm">
+                <div class="p-2.5 bg-secondary-fixed text-secondary rounded-lg">
+                  <span class="material-symbols-outlined text-[24px]">calculate</span>
+                </div>
+                <div>
+                  <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Estimador Predictivo de Lead
+                    Time y Fechas de Entrega</h2>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Simulador con arrastre dinámico de cola
+                    de máquina, tiempo de secado y holgura de despacho.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span
+                  class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-code-sm text-code-sm font-semibold">Algoritmo:
+                  CartoLead v3.2</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+              <!-- Input Form -->
+              <div class="lg:col-span-5 space-y-space-md bg-surface-container-low/40 p-space-md rounded-xl">
+                <h3 class="font-title-sm text-title-sm text-on-surface font-bold flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+                  Parámetros de la Nueva Orden
+                </h3>
+                <div>
+                  <label
+                    class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold mb-1"
+                    for="machineSelect">Máquina Destino Principal</label>
+                  <select
+                    class="w-full bg-surface-container-lowest font-body-md text-body-md text-on-surface px-space-md py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer"
+                    id="machineSelect" onchange="recalculateEstimates()">
+                    <option selected="" value="flexo">Flexo-Encoladora FFG Martin 924 (60,000 uds en cola)</option>
+                    <option value="corrugadora">Corrugadora BHS 2.80m (65,000 uds en cola)</option>
+                    <option value="hojeadora">Hojeadora Pasaban Synchro (27,000 uds en cola)</option>
+                    <option value="troqueladora">Troqueladora Bobst Mastercut (14,000 uds en cola)</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold mb-1"
+                    for="productSelect">Especificación de Producto & Onda</label>
+                  <select
+                    class="w-full bg-surface-container-lowest font-body-md text-body-md text-on-surface px-space-md py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer"
+                    id="productSelect" onchange="recalculateEstimates()">
+                    <option value="rsc_c">Caja Regular Ranurada (RSC) - Flauta C 32 ECT</option>
+                    <option value="rsc_bc">Caja Doble Corrugado RSC - Flauta B/C 48 ECT</option>
+                    <option value="sheet_kraft">Hojas Kraft Microcorrugado Flauta E</option>
+                    <option value="die_auto">Caja Autoarmable Troquelada - Blanco/Kraft 29 ECT</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+                  <div>
+                    <label
+                      class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold mb-1"
+                      for="quantityInput">Volumen Requerido (Uds)</label>
+                    <input
+                      class="w-full bg-surface-container-lowest font-code-sm text-code-sm font-bold text-on-surface px-space-md py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary"
+                      id="quantityInput" max="300000" min="5000" oninput="recalculateEstimates()" step="5000"
+                      type="number" value="45000" />
+                  </div>
+                  <div>
+                    <label
+                      class="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold mb-1"
+                      for="clientNameInput">Cliente / Referencia</label>
+                    <input
+                      class="w-full bg-surface-container-lowest font-body-sm text-body-sm text-on-surface px-space-md py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary"
+                      id="clientNameInput" type="text" value="Cervecería Modelo - Master 24 Botellas" />
+                  </div>
+                </div>
+                <!-- Machine Constraints pill -->
+                <div class="p-space-sm bg-surface-container-lowest rounded-lg space-y-1 font-body-sm text-body-sm">
+                  <div class="flex justify-between">
+                    <span class="text-on-surface-variant">Capacidad Nominal Diaria:</span>
+                    <span class="font-bold text-on-surface" id="rateDisplay">90,000 uds / día</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-on-surface-variant">Tiempo Neto de Corrida:</span>
+                    <span class="font-bold text-secondary" id="runTimeDisplay">12.0 Horas (1.5 turnos)</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-on-surface-variant">Desfase por Cola Existente:</span>
+                    <span class="font-bold text-amber-900" id="queueOffsetDisplay">+16.0 Horas de espera</span>
+                  </div>
+                </div>
+                <button
+                  class="w-full py-2.5 px-space-md bg-secondary hover:bg-secondary/90 text-on-secondary font-title-sm text-title-sm font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-space-sm"
+                  onclick="commitNewOrder()">
+                  <span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+                  <span>Confirmar y Asignar a Cola de Máquina</span>
+                </button>
+              </div>
+              <!-- Timeline and Calculated Dates Result -->
+              <div
+                class="lg:col-span-7 flex flex-col justify-between space-y-space-md bg-surface-container-low/20 p-space-md rounded-xl">
+                <div>
+                  <div class="flex items-center justify-between mb-space-md">
+                    <span class="font-title-sm text-title-sm font-bold text-on-surface">Cronograma Calculado de 6 Hitos
+                      Operativos</span>
+                    <span
+                      class="font-label-sm text-label-sm bg-emerald-100 text-emerald-900 font-bold px-2 py-0.5 rounded">Ruta
+                      Crítica Factible</span>
+                  </div>
+                  <!-- Milestone Timeline Grid (Vertical List with Visual Connection) -->
+                  <div class="relative pl-6 space-y-space-md border-l-2 border-secondary/30 ml-2">
+                    <!-- Hito 1: Programación -->
+                    <div class="relative group">
+                      <span
+                        class="absolute -left-[31px] top-0 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></span>
+                      <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+                        <div>
+                          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">1. Fecha
+                            de Programación</span>
+                          <p class="font-body-sm text-body-sm text-on-surface">Registro de especificación en CartoPlan
+                          </p>
+                        </div>
+                        <div class="text-right mt-1 sm:mt-0">
+                          <span
+                            class="font-code-sm text-code-sm font-bold text-on-surface bg-surface-container px-2 py-1 rounded"
+                            id="dateProg">16 Octubre 2024, 10:00 hrs</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Hito 2: Liberación -->
+                    <div class="relative group">
+                      <span
+                        class="absolute -left-[31px] top-0 w-3.5 h-3.5 rounded-full bg-secondary-container ring-4 ring-surface-container-lowest"></span>
+                      <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+                        <div>
+                          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">2. Fecha
+                            de Liberación</span>
+                          <p class="font-body-sm text-body-sm text-on-surface">Bobinas en molino asignadas +
+                            Clisés/Grabados listos</p>
+                        </div>
+                        <div class="text-right mt-1 sm:mt-0">
+                          <span
+                            class="font-code-sm text-code-sm font-bold text-on-surface bg-surface-container px-2 py-1 rounded"
+                            id="dateLib">16 Octubre 2024, 15:30 hrs</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Hito 3: Inicio -->
+                    <div class="relative group">
+                      <span
+                        class="absolute -left-[31px] top-0 w-3.5 h-3.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></span>
+                      <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+                        <div>
+                          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">3. Fecha
+                            de Inicio en Máquina</span>
+                          <p class="font-body-sm text-body-sm text-on-surface">Desocupación de cola actual (60k uds
+                            previas)</p>
+                        </div>
+                        <div class="text-right mt-1 sm:mt-0">
+                          <span
+                            class="font-code-sm text-code-sm font-bold text-secondary bg-secondary-fixed px-2 py-1 rounded"
+                            id="dateStart">17 Octubre 2024, 08:30 hrs</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Hito 4: Término -->
+                    <div class="relative group">
+                      <span
+                        class="absolute -left-[31px] top-0 w-3.5 h-3.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></span>
+                      <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+                        <div>
+                          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">4. Fecha
+                            de Término de Corrida</span>
+                          <p class="font-body-sm text-body-sm text-on-surface">Corte, ranurado e impresión finalizados
+                          </p>
+                        </div>
+                        <div class="text-right mt-1 sm:mt-0">
+                          <span
+                            class="font-code-sm text-code-sm font-bold text-on-surface bg-surface-container px-2 py-1 rounded"
+                            id="dateFinish">17 Octubre 2024, 20:30 hrs</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Hito 5: Finalización -->
+                    <div class="relative group">
+                      <span
+                        class="absolute -left-[31px] top-0 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></span>
+                      <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+                        <div>
+                          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">5. Fecha
+                            de Finalización y QC</span>
+                          <p class="font-body-sm text-body-sm text-on-surface">Curado de adhesivo, flejado y tarimas en
+                            almacén</p>
+                        </div>
+                        <div class="text-right mt-1 sm:mt-0">
+                          <span
+                            class="font-code-sm text-code-sm font-bold text-on-surface bg-surface-container px-2 py-1 rounded"
+                            id="dateFinal">18 Octubre 2024, 06:00 hrs</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Hito 6: Entrega -->
+                    <div class="relative group">
+                      <span
+                        class="absolute -left-[31px] top-0 w-3.5 h-3.5 rounded-full bg-emerald-600 ring-4 ring-surface-container-lowest animate-pulse"></span>
+                      <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between bg-emerald-50/80 p-space-sm rounded-lg shadow-sm border border-emerald-200">
+                        <div>
+                          <span class="font-label-sm text-label-sm text-emerald-900 uppercase font-bold">6. Fecha de
+                            Entrega Estimada</span>
+                          <p class="font-body-sm text-body-sm text-emerald-800 font-semibold">Carga en transporte con
+                            ventana logística local</p>
+                        </div>
+                        <div class="text-right mt-1 sm:mt-0">
+                          <span
+                            class="font-code-sm text-code-sm font-bold text-white bg-emerald-700 px-3 py-1 rounded shadow-sm"
+                            id="dateDelivery">18 Octubre 2024, 14:00 hrs</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Process Pipeline Bar Graph -->
+                <div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">Distribución
+                    de Ciclo de Vida (Horas Acumuladas)</span>
+                  <div class="w-full h-4 rounded-full bg-surface-container flex overflow-hidden">
+                    <div class="bg-primary h-full" style="width: 10%" title="Programación (5.5h)"></div>
+                    <div class="bg-secondary-container h-full" style="width: 15%" title="Liberación & Prep (17h)"></div>
+                    <div class="bg-amber-500 h-full" style="width: 30%" title="Espera en Cola (16h)"></div>
+                    <div class="bg-secondary h-full" style="width: 25%" title="Producción Neta (12h)"></div>
+                    <div class="bg-primary-container h-full" style="width: 12%" title="Secado/QC (9.5h)"></div>
+                    <div class="bg-emerald-600 h-full" style="width: 8%" title="Despacho (8h)"></div>
+                  </div>
+                  <div
+                    class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant mt-1.5 flex-wrap gap-2">
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span>
+                      Prog</span>
+                    <span class="flex items-center gap-1"><span
+                        class="w-2 h-2 rounded-full bg-secondary-container"></span> Prep</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                      Cola</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span>
+                      Corrida</span>
+                    <span class="flex items-center gap-1"><span
+                        class="w-2 h-2 rounded-full bg-primary-container"></span> Curado</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                      Entrega</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- 4. Tabla de Control de Órdenes Programadas y en Proceso -->
+          <section class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg space-y-space-md">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+              <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Control Maestro de Órdenes y
+                  Fechas Críticas</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Trazabilidad completa: Fecha de
+                  Programación, Liberación, Inicio, Término, Finalización y Entrega.</p>
+              </div>
+              <!-- Search & Filter Controls -->
+              <div class="flex flex-wrap items-center gap-space-xs">
+                <div class="relative">
+                  <span
+                    class="material-symbols-outlined absolute left-2.5 top-2 text-[18px] text-on-surface-variant">search</span>
+                  <input
+                    class="pl-8 pr-3 py-1.5 bg-surface-container-low font-body-sm text-body-sm rounded-lg border-0 focus:ring-1 focus:ring-secondary text-on-surface w-48 sm:w-64"
+                    id="orderSearch" onkeyup="filterOrders()" placeholder="Buscar cliente, orden..." type="text" />
+                </div>
+                <select
+                  class="bg-surface-container-low font-label-md text-label-md text-on-surface px-space-sm py-1.5 rounded-lg border-0 cursor-pointer"
+                  id="machineFilter" onchange="filterOrders()">
+                  <option value="all">Todas las Máquinas</option>
+                  <option value="BHS">Corrugadora BHS</option>
+                  <option value="Pasaban">Hojeadora Pasaban</option>
+                  <option value="FFG">Flexo FFG 924</option>
+                  <option value="Bobst">Troqueladora Bobst</option>
+                </select>
+                <select
+                  class="bg-surface-container-low font-label-md text-label-md text-on-surface px-space-sm py-1.5 rounded-lg border-0 cursor-pointer"
+                  id="statusFilter" onchange="filterOrders()">
+                  <option value="all">Todos los Estados</option>
+                  <option value="En Proceso">En Proceso</option>
+                  <option value="En Cola">En Cola</option>
+                  <option value="Completado">Completado</option>
+                </select>
+              </div>
+            </div>
+            <!-- Table Container -->
+            <div class="overflow-x-auto rounded-lg">
+              <table class="w-full text-left font-body-sm text-body-sm" id="ordersTable">
+                <thead
+                  class="bg-surface-container font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">
+                  <tr>
+                    <th class="py-2.5 px-space-sm">ID / Cliente / Producto</th>
+                    <th class="py-2.5 px-space-sm">Máquina</th>
+                    <th class="py-2.5 px-space-sm">Volumen (Prog / Pend)</th>
+                    <th class="py-2.5 px-space-sm">F. Programación</th>
+                    <th class="py-2.5 px-space-sm">F. Liberación</th>
+                    <th class="py-2.5 px-space-sm">F. Inicio</th>
+                    <th class="py-2.5 px-space-sm">F. Término</th>
+                    <th class="py-2.5 px-space-sm">F. Finalización</th>
+                    <th class="py-2.5 px-space-sm">F. Entrega</th>
+                    <th class="py-2.5 px-space-sm text-center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-surface-container-low" id="ordersTableBody">
+                  <!-- Row 1 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors" data-machine="FFG"
+                    data-status="En Proceso">
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">ORD-10842</span>
+                      <span class="font-bold text-on-surface block">Empaques Agrícolas del Norte</span>
+                      <span class="text-on-surface-variant text-[11px]">Caja Tomatera 15kg • Flauta C</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <span
+                        class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-fixed text-secondary font-bold">FFG
+                        Martin 924</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div class="font-code-sm text-code-sm font-semibold">45,000 / <span
+                          class="text-secondary font-bold">18,000 uds</span></div>
+                      <div class="w-24 bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-emerald-600 h-full" style="width: 60%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">14/10 09:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">14/10 14:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-emerald-800 font-semibold">15/10 07:00
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 19:30</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">16/10 04:00</td>
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">16/10 16:00</span>
+                      <span
+                        class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-emerald-100 text-emerald-800 font-bold">A
+                        Tiempo</span>
+                    </td>
+                    <td class="py-3 px-space-sm text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Ver Ficha Técnica"><span
+                            class="material-symbols-outlined text-[18px]">visibility</span></button>
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Reprogramar"><span
+                            class="material-symbols-outlined text-[18px]">edit_calendar</span></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 2 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors" data-machine="BHS"
+                    data-status="En Proceso">
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">ORD-10843</span>
+                      <span class="font-bold text-on-surface block">Envases Industriales de México</span>
+                      <span class="text-on-surface-variant text-[11px]">Lámina Doble Onda B/C 600g</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <span
+                        class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-bold">BHS
+                        2.80m</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div class="font-code-sm text-code-sm font-semibold">90,000 / <span
+                          class="text-secondary font-bold">25,000 uds</span></div>
+                      <div class="w-24 bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-emerald-600 h-full" style="width: 72%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">14/10 11:30</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">14/10 16:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-emerald-800 font-semibold">15/10 06:00
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 16:45</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">16/10 02:00</td>
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">16/10 10:00</span>
+                      <span
+                        class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-emerald-100 text-emerald-800 font-bold">A
+                        Tiempo</span>
+                    </td>
+                    <td class="py-3 px-space-sm text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Ver Ficha Técnica"><span
+                            class="material-symbols-outlined text-[18px]">visibility</span></button>
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Reprogramar"><span
+                            class="material-symbols-outlined text-[18px]">edit_calendar</span></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 3 (Ajustado) -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors bg-amber-50/30" data-machine="FFG"
+                    data-status="En Cola">
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">ORD-10844</span>
+                      <span class="font-bold text-on-surface block">Grupo Harinero del Bajío</span>
+                      <span class="text-on-surface-variant text-[11px]">Saco Corrugado Rígido 25kg</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <span
+                        class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-fixed text-secondary font-bold">FFG
+                        Martin 924</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div class="font-code-sm text-code-sm font-semibold">57,000 / <span
+                          class="text-secondary font-bold">57,000 uds</span></div>
+                      <div class="w-24 bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-amber-500 h-full" style="width: 5%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 08:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 13:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-amber-900 font-semibold">16/10 01:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">16/10 18:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">17/10 05:00</td>
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">17/10 15:30</span>
+                      <span
+                        class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-amber-100 text-amber-900 font-bold">Ajustado</span>
+                    </td>
+                    <td class="py-3 px-space-sm text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Ver Ficha Técnica"><span
+                            class="material-symbols-outlined text-[18px]">visibility</span></button>
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Reprogramar"><span
+                            class="material-symbols-outlined text-[18px]">edit_calendar</span></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 4 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors" data-machine="Bobst"
+                    data-status="En Proceso">
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">ORD-10845</span>
+                      <span class="font-bold text-on-surface block">Calzado León Export</span>
+                      <span class="text-on-surface-variant text-[11px]">Caja Tapa Integrada • Micro E</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <span
+                        class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-bold">Bobst
+                        Mastercut</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div class="font-code-sm text-code-sm font-semibold">32,000 / <span
+                          class="text-secondary font-bold">8,000 uds</span></div>
+                      <div class="w-24 bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-emerald-600 h-full" style="width: 75%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">14/10 14:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 09:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-emerald-800 font-semibold">15/10 11:00
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 16:30</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 22:00</td>
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">16/10 09:00</span>
+                      <span
+                        class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-emerald-100 text-emerald-800 font-bold">A
+                        Tiempo</span>
+                    </td>
+                    <td class="py-3 px-space-sm text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Ver Ficha Técnica"><span
+                            class="material-symbols-outlined text-[18px]">visibility</span></button>
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Reprogramar"><span
+                            class="material-symbols-outlined text-[18px]">edit_calendar</span></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 5 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors" data-machine="Pasaban"
+                    data-status="En Proceso">
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">ORD-10846</span>
+                      <span class="font-bold text-on-surface block">Litografía & Empaques del Centro</span>
+                      <span class="text-on-surface-variant text-[11px]">Pliegos Liner Blanco 120x80cm</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <span
+                        class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface font-bold">Pasaban
+                        Synchro</span>
+                    </td>
+                    <td class="py-3 px-space-sm">
+                      <div class="font-code-sm text-code-sm font-semibold">60,000 / <span
+                          class="text-secondary font-bold">12,000 uds</span></div>
+                      <div class="w-24 bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+                        <div class="bg-emerald-600 h-full" style="width: 80%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">14/10 16:30</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 07:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-emerald-800 font-semibold">15/10 08:30
+                    </td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 15:00</td>
+                    <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">15/10 20:00</td>
+                    <td class="py-3 px-space-sm">
+                      <span class="font-code-sm text-code-sm font-bold text-on-surface block">16/10 11:00</span>
+                      <span
+                        class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-emerald-100 text-emerald-800 font-bold">A
+                        Tiempo</span>
+                    </td>
+                    <td class="py-3 px-space-sm text-center">
+                      <div class="flex items-center justify-center gap-1">
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Ver Ficha Técnica"><span
+                            class="material-symbols-outlined text-[18px]">visibility</span></button>
+                        <button class="p-1 hover:bg-surface-container rounded text-on-surface-variant"
+                          title="Reprogramar"><span
+                            class="material-symbols-outlined text-[18px]">edit_calendar</span></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- 5. Gráfico Visual de Capacidad Diaria vs Carga Programada -->
+          <section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+              <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Horizonte Semanal: Capacidad
+                  Máxima vs Carga Comprometida</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Evaluación de saturación de Lunes a
+                  Domingo. Identifique días con holgura para programar nuevos pedidos.</p>
+              </div>
+              <div class="flex items-center gap-space-md text-label-sm font-label-sm">
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-primary"></span>
+                  Corrugadora</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-secondary-container"></span>
+                  Flexo FFG 924</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 bg-red-600"></span> Límite Nominal
+                  100%</span>
+              </div>
+            </div>
+            <!-- Weekly Capacity Bar Visualization -->
+            <div class="pt-space-md relative">
+              <!-- 100% Threshold line -->
+              <div
+                class="absolute left-0 right-0 top-16 border-t-2 border-dashed border-red-500/80 z-10 flex justify-end pr-2">
+                <span class="bg-red-50 text-red-700 text-[10px] font-bold px-1.5 py-0.5 rounded -mt-2.5">100% Umbral
+                  Máximo Operativo</span>
+              </div>
+              <div class="grid grid-cols-7 gap-2 sm:gap-4 pt-10 pb-4 text-center items-end h-72">
+                <!-- Lunes -->
+                <div class="flex flex-col items-center h-full justify-end group">
+                  <div
+                    class="w-full flex items-end justify-center gap-1.5 h-48 bg-surface-container-low/40 rounded-t-lg p-1.5 relative">
+                    <div class="w-1/2 bg-primary rounded-t transition-all group-hover:brightness-110"
+                      style="height: 88%" title="Corrugadora: 88%"></div>
+                    <div class="w-1/2 bg-secondary-container rounded-t transition-all group-hover:brightness-110"
+                      style="height: 94%" title="Flexo: 94%"></div>
+                  </div>
+                  <span class="font-title-sm text-title-sm font-bold text-on-surface mt-2">Lun</span>
+                  <span class="font-code-sm text-code-sm text-on-surface-variant">91% Ocup</span>
+                </div>
+                <!-- Martes -->
+                <div class="flex flex-col items-center h-full justify-end group">
+                  <div
+                    class="w-full flex items-end justify-center gap-1.5 h-48 bg-surface-container-low/40 rounded-t-lg p-1.5 relative">
+                    <div class="w-1/2 bg-primary rounded-t transition-all group-hover:brightness-110"
+                      style="height: 92%" title="Corrugadora: 92%"></div>
+                    <div class="w-1/2 bg-secondary-container rounded-t transition-all group-hover:brightness-110"
+                      style="height: 98%" title="Flexo: 98%"></div>
+                  </div>
+                  <span class="font-title-sm text-title-sm font-bold text-on-surface mt-2">Mar</span>
+                  <span class="font-code-sm text-code-sm text-on-surface-variant">95% Ocup</span>
+                </div>
+                <!-- Miércoles (Hoy - Sobrecupo) -->
+                <div class="flex flex-col items-center h-full justify-end group bg-amber-50/50 rounded-lg p-1">
+                  <span
+                    class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider -mb-1">Hoy</span>
+                  <div
+                    class="w-full flex items-end justify-center gap-1.5 h-48 bg-surface-container-low/60 rounded-t-lg p-1.5 relative">
+                    <div class="w-1/2 bg-primary rounded-t transition-all group-hover:brightness-110"
+                      style="height: 91%" title="Corrugadora: 91%"></div>
+                    <div
+                      class="w-1/2 bg-secondary-container rounded-t transition-all group-hover:brightness-110 relative"
+                      style="height: 113%" title="Flexo: 113% Sobrecupo">
+                      <span
+                        class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-secondary bg-white px-1 rounded shadow-xs">!</span>
+                    </div>
+                  </div>
+                  <span class="font-title-sm text-title-sm font-bold text-secondary mt-1">Mié</span>
+                  <span class="font-code-sm text-code-sm text-secondary font-bold">102% Ocup</span>
+                </div>
+                <!-- Jueves -->
+                <div class="flex flex-col items-center h-full justify-end group">
+                  <div
+                    class="w-full flex items-end justify-center gap-1.5 h-48 bg-surface-container-low/40 rounded-t-lg p-1.5 relative">
+                    <div class="w-1/2 bg-primary rounded-t transition-all group-hover:brightness-110"
+                      style="height: 84%" title="Corrugadora: 84%"></div>
+                    <div class="w-1/2 bg-secondary-container rounded-t transition-all group-hover:brightness-110"
+                      style="height: 89%" title="Flexo: 89%"></div>
+                  </div>
+                  <span class="font-title-sm text-title-sm font-bold text-on-surface mt-2">Jue</span>
+                  <span class="font-code-sm text-code-sm text-on-surface-variant">86% Ocup</span>
+                </div>
+                <!-- Viernes -->
+                <div class="flex flex-col items-center h-full justify-end group">
+                  <div
+                    class="w-full flex items-end justify-center gap-1.5 h-48 bg-surface-container-low/40 rounded-t-lg p-1.5 relative">
+                    <div class="w-1/2 bg-primary rounded-t transition-all group-hover:brightness-110"
+                      style="height: 78%" title="Corrugadora: 78%"></div>
+                    <div class="w-1/2 bg-secondary-container rounded-t transition-all group-hover:brightness-110"
+                      style="height: 75%" title="Flexo: 75%"></div>
+                  </div>
+                  <span class="font-title-sm text-title-sm font-bold text-on-surface mt-2">Vie</span>
+                  <span class="font-code-sm text-code-sm text-on-surface-variant">76% Ocup</span>
+                </div>
+                <!-- Sábado (Ventana Óptima) -->
+                <div class="flex flex-col items-center h-full justify-end group bg-emerald-50/50 rounded-lg p-1">
+                  <span
+                    class="font-label-sm text-label-sm text-emerald-800 font-bold uppercase tracking-wider -mb-1">Holgura</span>
+                  <div
+                    class="w-full flex items-end justify-center gap-1.5 h-48 bg-surface-container-low/40 rounded-t-lg p-1.5 relative">
+                    <div class="w-1/2 bg-primary rounded-t transition-all group-hover:brightness-110"
+                      style="height: 52%" title="Corrugadora: 52%"></div>
+                    <div class="w-1/2 bg-secondary-container rounded-t transition-all group-hover:brightness-110"
+                      style="height: 48%" title="Flexo: 48%"></div>
+                  </div>
+                  <span class="font-title-sm text-title-sm font-bold text-emerald-900 mt-1">Sáb</span>
+                  <span class="font-code-sm text-code-sm text-emerald-800 font-bold">50% Ocup</span>
+                </div>
+                <!-- Domingo -->
+                <div class="flex flex-col items-center h-full justify-end group">
+                  <div
+                    class="w-full flex items-end justify-center gap-1.5 h-48 bg-surface-container-low/40 rounded-t-lg p-1.5 relative">
+                    <div class="w-1/2 bg-primary rounded-t transition-all group-hover:brightness-110"
+                      style="height: 15%" title="Mantenimiento Preventivo"></div>
+                    <div class="w-1/2 bg-secondary-container rounded-t transition-all group-hover:brightness-110"
+                      style="height: 10%" title="Turno Especial"></div>
+                  </div>
+                  <span class="font-title-sm text-title-sm font-bold text-on-surface mt-2">Dom</span>
+                  <span class="font-code-sm text-code-sm text-on-surface-variant">Mant. Prev.</span>
+                </div>
+              </div>
+            </div>
+            <!-- Action Footer for Schedulers -->
+            <div
+              class="flex flex-col sm:flex-row items-center justify-between p-space-md bg-surface-container-low/40 rounded-xl gap-space-sm">
+              <div class="flex items-center gap-space-sm">
+                <span class="material-symbols-outlined text-secondary text-[22px]">tips_and_updates</span>
+                <span class="font-body-sm text-body-sm text-on-surface">
+                  <strong>Recomendación Automática de CartoPlan:</strong> Ventana disponible para lotes urgentes (+80k
+                  cajas) detectada para <strong>Viernes T3 y Sábado Turnos 1 y 2</strong> sin generar horas extras.
+                </span>
+              </div>
+              <button
+                class="text-secondary hover:text-secondary/80 font-title-sm text-title-sm font-bold whitespace-nowrap flex items-center gap-1"
+                onclick="scrollToEstimator()">
+                Aprovechar Ventana Sábado <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </button>
+            </div>
+          </section>
+        </div>
+        <!-- Inline Dynamic JavaScript Logic -->
+        <script>
+          const machineCapacities = {
+            flexo: { name: 'Flexo FFG Martin 924', dailyRate: 90000, queueHrs: 16.0, queueUds: 60000 },
+            corrugadora: { name: 'Corrugadora BHS 2.80m', dailyRate: 240000, queueHrs: 6.5, queueUds: 65000 },
+            hojeadora: { name: 'Hojeadora Pasaban Synchro', dailyRate: 130000, queueHrs: 4.8, queueUds: 27000 },
+            troqueladora: { name: 'Troqueladora Bobst Mastercut', dailyRate: 75000, queueHrs: 3.5, queueUds: 14000 }
+          };
+
+          function recalculateEstimates() {
+            const machineKey = document.getElementById('machineSelect').value;
+            const quantity = parseInt(document.getElementById('quantityInput').value, 10) || 45000;
+            const machine = machineCapacities[machineKey];
+
+            // Update capacity displays
+            document.getElementById('rateDisplay').innerText = machine.dailyRate.toLocaleString('es-MX') + ' uds / día';
+
+            const runHours = (quantity / machine.dailyRate) * 24;
+            document.getElementById('runTimeDisplay').innerText = runHours.toFixed(1) + ' Horas (' + (runHours / 8).toFixed(1) + ' turnos)';
+            document.getElementById('queueOffsetDisplay').innerText = '+' + machine.queueHrs.toFixed(1) + ' Horas en cola previa';
+
+            // Base Simulation Clock: 16 Oct 2024, 10:00:00
+            const baseProg = new Date(2024, 9, 16, 10, 0, 0);
+
+            // 1. Programación: Base
+            const dateProg = new Date(baseProg.getTime());
+
+            // 2. Liberación: +5.5 hours prep / cliché tooling
+            const dateLib = new Date(baseProg.getTime() + (5.5 * 3600 * 1000));
+
+            // 3. Inicio: Wait for existing queue
+            const dateStart = new Date(baseProg.getTime() + ((machine.queueHrs + 6.5) * 3600 * 1000));
+
+            // 4. Término: Run duration
+            const dateFinish = new Date(dateStart.getTime() + (runHours * 3600 * 1000));
+
+            // 5. Finalización: +9.5h QC & curing/strapping
+            const dateFinal = new Date(dateFinish.getTime() + (9.5 * 3600 * 1000));
+
+            // 6. Entrega: +8h outbound logistics buffer
+            const dateDelivery = new Date(dateFinal.getTime() + (8 * 3600 * 1000));
+
+            const fmt = (d) => {
+              const day = d.getDate();
+              const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+              const m = months[d.getMonth()];
+              const year = d.getFullYear();
+              const hrs = String(d.getHours()).padStart(2, '0');
+              const mins = String(d.getMinutes()).padStart(2, '0');
+              return `${day} ${m} ${year}, ${hrs}:${mins} hrs`;
+            };
+
+            document.getElementById('dateProg').innerText = fmt(dateProg);
+            document.getElementById('dateLib').innerText = fmt(dateLib);
+            document.getElementById('dateStart').innerText = fmt(dateStart);
+            document.getElementById('dateFinish').innerText = fmt(dateFinish);
+            document.getElementById('dateFinal').innerText = fmt(dateFinal);
+            document.getElementById('dateDelivery').innerText = fmt(dateDelivery);
+          }
+
+          function commitNewOrder() {
+            const machineKey = document.getElementById('machineSelect').value;
+            const machine = machineCapacities[machineKey];
+            const quantity = parseInt(document.getElementById('quantityInput').value, 10) || 45000;
+            const client = document.getElementById('clientNameInput').value || 'Cliente General';
+            const orderId = 'ORD-' + Math.floor(10850 + Math.random() * 900);
+
+            const tableBody = document.getElementById('ordersTableBody');
+            const newRow = document.createElement('tr');
+            newRow.className = 'hover:bg-surface-container-low/40 transition-colors bg-secondary-fixed/20';
+            newRow.setAttribute('data-machine', machineKey === 'flexo' ? 'FFG' : machineKey === 'corrugadora' ? 'BHS' : machineKey === 'hojeadora' ? 'Pasaban' : 'Bobst');
+            newRow.setAttribute('data-status', 'En Cola');
+
+            newRow.innerHTML = `
+        <td class="py-3 px-space-sm">
+          <span class="font-code-sm text-code-sm font-bold text-on-surface block">${orderId}</span>
+          <span class="font-bold text-on-surface block">${client}</span>
+          <span class="text-on-surface-variant text-[11px]">Nueva Asignación • Simulación Aprobada</span>
+        </td>
+        <td class="py-3 px-space-sm">
+          <span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-fixed text-secondary font-bold">${machine.name}</span>
+        </td>
+        <td class="py-3 px-space-sm">
+          <div class="font-code-sm text-code-sm font-semibold">${quantity.toLocaleString('es-MX')} / <span class="text-secondary font-bold">${quantity.toLocaleString('es-MX')} uds</span></div>
+          <div class="w-24 bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+            <div class="bg-amber-500 h-full" style="width: 0%"></div>
+          </div>
+        </td>
+        <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">16/10 10:00</td>
+        <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">16/10 15:30</td>
+        <td class="py-3 px-space-sm font-code-sm text-code-sm text-amber-900 font-semibold">17/10 08:30</td>
+        <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">17/10 20:30</td>
+        <td class="py-3 px-space-sm font-code-sm text-code-sm text-on-surface-variant">18/10 06:00</td>
+        <td class="py-3 px-space-sm">
+          <span class="font-code-sm text-code-sm font-bold text-on-surface block">18/10 14:00</span>
+          <span class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-emerald-100 text-emerald-800 font-bold">Programada</span>
+        </td>
+        <td class="py-3 px-space-sm text-center">
+          <div class="flex items-center justify-center gap-1">
+            <button title="Ver Ficha Técnica" class="p-1 hover:bg-surface-container rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+            <button title="Reprogramar" class="p-1 hover:bg-surface-container rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">edit_calendar</span></button>
+          </div>
+        </td>
+      `;
+
+            tableBody.prepend(newRow);
+            showToast('Orden ' + orderId + ' Asignada', 'Compromiso de entrega fijado para el 18 de Octubre, 14:00 hrs.');
+          }
+
+          function filterOrders() {
+            const search = document.getElementById('orderSearch').value.toLowerCase();
+            const machineFilter = document.getElementById('machineFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const rows = document.querySelectorAll('#ordersTableBody tr');
+
+            rows.forEach(row => {
+              const text = row.innerText.toLowerCase();
+              const rowMachine = row.getAttribute('data-machine') || '';
+              const rowStatus = row.getAttribute('data-status') || '';
+
+              const matchSearch = text.includes(search);
+              const matchMachine = (machineFilter === 'all') || (rowMachine.includes(machineFilter));
+              const matchStatus = (statusFilter === 'all') || (rowStatus === statusFilter);
+
+              if (matchSearch && matchMachine && matchStatus) {
+                row.style.display = '';
+              } else {
+                row.style.display = 'none';
+              }
+            });
+          }
+
+          function scrollToEstimator() {
+            const el = document.getElementById('estimatorSection');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              document.getElementById('quantityInput').focus();
+            }
+          }
+
+          function triggerOptimization() {
+            showToast('Optimizador Heurístico Iniciado', 'Secuenciando anchos de bobina y clisés para reducir 42 min de cambio.');
+          }
+
+          function showToast(title, message) {
+            const toast = document.getElementById('statusToast');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+              toast.classList.add('hidden');
+            }, 4500);
+          }
+
+          // Initialize calculation on load
+          document.addEventListener('DOMContentLoaded', () => {
+            recalculateEstimates();
+          });
+        </script>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
